@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <% if current_user.present? %>
+      <%= link_to 'Log out', sessions_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
