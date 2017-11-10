@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  resources :registrations, only: [:new, :create]
 
 end
