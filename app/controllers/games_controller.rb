@@ -1,13 +1,11 @@
 class GamesController < ApplicationController
-
-  SOLUTION = (1..9).to_a
-
   def new
-    render json: SOLUTION.shuffle
+    render json: Game.riddle
   end
 
   def check
-    status = permitted_params[:solution] == SOLUTION ? :ok : :unprocessable_entity
+    user_solution = permitted_params[:solution].map(&:to_i)
+    status = Game.check(user_solution) ? :ok : :unprocessable_entity
 
     render json: {}, status: status
   end
