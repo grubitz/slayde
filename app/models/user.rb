@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  before_validation :normalize_email!
   before_create :generate_token!
   after_create :send_confirmation_email!
 
@@ -21,6 +22,10 @@ class User < ApplicationRecord
   end
 
   protected
+
+  def normalize_email!
+    email.downcase! if email.present?
+  end
 
   def generate_token!
     token = nil
