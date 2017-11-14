@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
+  root to: 'homepage#show'
   get 'email_confirmation/:token', to: 'email_confirmations#confirm', as: 'confirmation'
 
   resources :users
