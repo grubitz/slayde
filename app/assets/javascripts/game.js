@@ -1,7 +1,8 @@
 var Slayde = {
 
-  initlialize: function() {
+  initialize: function() {
     this._initBoard();
+    $('#restart').on('click', this._restartButtonHandler.bind(this));
   },
 
   restart: function() {
@@ -31,7 +32,7 @@ var Slayde = {
   },
 
   _terminateBoard: function() {
-    $('board').empty();
+    $('#board').empty();
   },
 
   _dropHandler: function(ev) {
@@ -56,6 +57,10 @@ var Slayde = {
     ev.preventDefault();
   },
 
+  _restartButtonHandler: function() {
+    this.restart();
+  },
+
   _checkSolution: function() {
     var order = [];
     $('.tile').each(function(key, tile) {
@@ -68,5 +73,5 @@ var Slayde = {
 };
 
 $(function() {
-  Slayde.initlialize();
+  Slayde.initialize();
 });
