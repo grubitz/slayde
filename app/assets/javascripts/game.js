@@ -1,13 +1,17 @@
 var Slayde = {
 
+  _moveCounter: 0,
+
   initialize: function() {
     this._initBoard();
+    this._resetMoveCounter();
     $('#restart').on('click', this._restartButtonHandler.bind(this));
   },
 
   restart: function() {
     this._terminateBoard();
     this._initBoard();
+    this._resetMoveCounter();
   },
 
   _initBoard: function() {
@@ -19,7 +23,7 @@ var Slayde = {
   },
   
   _buildTile: function(key, item) {
-    var tile = $('<div class="tile" id="tile' + item + '" draggable="true">' + item + '</div>');
+    var tile = $('<div class="tile" id="tile' + item + '" draggable="true"><div class="content"><div class="table"><div class="table-cell">' + item + '</div></div></div></div>');
     var dropzone = $('<div class="dropzone"></div>');
 
     tile.on('dragstart', this._dragStartHandler.bind(this));
@@ -38,6 +42,7 @@ var Slayde = {
   _dropHandler: function(ev) {
     ev.preventDefault();
 
+    this._incrementMoveCounter();
     this._swapTiles(ev);
     this._checkSolution();
   },
@@ -69,6 +74,20 @@ var Slayde = {
     $.post('/games/check', { solution: order }, function() {
       alert('Congrats');
     });
+  },
+
+  _incrementMoveCounter: function() {
+    this._moveCounter++;
+    this._updateCounterElement();
+  },
+
+  _resetMoveCounter: function() {
+    this._moveCounter = 0;
+    this._updateCounterElement();
+  },
+
+  _updateCounterElement: function() {
+    $('#counter').text(this._moveCounter);
   }
 };
 
