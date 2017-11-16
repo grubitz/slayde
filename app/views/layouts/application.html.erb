@@ -22,13 +22,20 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#">High Score</a>
         </li>
-        <li class="nav-item">
-          <% if current_user.present? %>
+        <% if current_user.present? %>
+          <li class="nav-item">
             <%= link_to 'Log out', sessions_path, method: :delete, class: 'nav-link' %>
-              <% else %>
-              <%= link_to 'Register', new_registration_path, method: :get, class: 'nav-link' %>
+          </li>
+          <% if current_user.is_admin? %>
+            <li class="nav-item">
+              <%= link_to 'Control Panel', users_path, class: 'nav-link' %>
+            </li>
           <% end %>
-        </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Register', new_registration_path, class: 'nav-link' %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </nav>
