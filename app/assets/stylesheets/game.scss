@@ -1,7 +1,7 @@
 .tile {
   width: 30%;
   background: #F7F7F7;
-  color: #B00100;
+  color: $dark;
   border: solid;
   margin: 1.66%;
   font-size: 4rem;
@@ -13,7 +13,7 @@
 
 #board {
   width: 100%;
-  max-width: 1360px;
+  max-width: 900px;
   margin: auto;
 }
 
@@ -38,3 +38,8 @@
 body {
   padding-top: 60px;
 }
+form {
+
+
+}
+
