@@ -16,13 +16,14 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="navbar-nav">
       <% if current_user.present? %>
+        <ul class="navbar-nav">
           <li class="nav-item">
-          <%= link_to '#', class: 'nav-link' do %>
-              Moves: <span id="counter"></span>
-          <% end %>
+            <%= link_to '#', class: 'nav-link' do %>
+                Moves: <span id="counter"></span>
+            <% end %>
           </li>
+        </ul>
       <% end %>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
