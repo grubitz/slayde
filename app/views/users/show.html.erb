@@ -1,18 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>confirmed:</strong>
-  <%- if @user.confirmed? %>
-    yes
-  <%- else %>
-    no
-  <%- end %>
-</p>
+  <p>
+    <strong>Confirmed:</strong>
+    <%= yes_no(@user.confirmed?) %>
+  </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <p>
+    <strong>Admin:</strong>
+    <%= yes_no(@user.is_admin?) %>
+
+  </p>
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-dark' %>
+  <%= link_to 'Back', users_path, class: 'btn btn-dark' %>
+</div>

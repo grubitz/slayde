@@ -21,6 +21,14 @@ class User < ApplicationRecord
     raise 'Invalid password' unless authenticate(password)
   end
 
+  def update_with_password(params)
+    unless authenticate(params.delete(:current_password))
+      errors[:base] << 'Incorrect password'
+      return false
+    end
+    update(params)
+  end
+
   protected
 
   def normalize_email!

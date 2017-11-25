@@ -1,0 +1,39 @@
+<%= form_with(model: @profile, local: true, method: :patch, url: profile_path) do |form| %>
+    <% if @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: 'form-control'  %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :current_password %>
+        <%= form.password_field :current_password, class: 'form-control'  %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: 'form-control'  %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, class: 'form-control'  %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit value: 'Save', class: 'btn btn-dark' %>
+      </div>
+    </div>
+<% end %>
+
