@@ -77,5 +77,33 @@ RSpec.describe User, type: :model do
     expect { create(:user) }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 
+  context '#update_with_password' do
+    context 'with valid current password' do
+      it 'update password if validation passes' do
+        user = create(:user, password: 'breadandbutter')
+        user.update_with_password({current_password:'breadandbutter',
+                                   password: 'rollypolly',
+                                   password_confirmation: 'rollypolly' })
+        expect(user.authenticate('rollypolly')).to be_truthy
+      end
+      it 'does not update password if validation fails' do
+        user = create(:user, password: 'breadandbutter')
+        user.update_with_password({current_password:'breadandbutter',
+                                   password: 'rollypolly',
+                                   password_confirmation: 'jollymolly' })
+        expect(user.authenticate('rollypolly')).to be_falsey
+        expect(user.authenticate('breadandbutter')).to be_truthy
+      end
+    end
+    context 'with invalid current password' do
+      it 'does not update password' do
+        user = create(:user, password: 'breadandbutter')
+        user.update_with_password({current_password:'beansontoast',
+                                   password: 'rollypolly',
+                                   password_confirmation: 'rollypolly' })
+        expect(user.authenticate('rollypolly')).to be_falsey
+        expect(user.authenticate('breadandbutter')).to be_truthy
+      end
+    end
+  end
 end
-

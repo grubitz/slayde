@@ -67,18 +67,16 @@ RSpec.describe RegistrationsController, type: :controller do
 
   context 'for authorized user' do
     before do
-      user = create(:user)
-      session[:user_id] = user.id
+      sign_in
     end
+      it 'GET #new redirects to root_url' do
+        get :new
+        expect(response).to redirect_to root_url
+      end
 
-    it 'GET #new redirects to root_url' do
-      get :new
-      expect(response).to redirect_to root_url
-    end
-
-    it 'POST #create redirects to root_url' do
-      post :create
-      expect(response).to redirect_to root_url
+      it 'POST #create redirects to root_url' do
+        post :create
+        expect(response).to redirect_to root_url
+      end
     end
   end
-end

@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe GamesController, type: :controller do
-
+  before do
+    sign_in
+  end
   it '#new responds with correct json' do
     get :new
     expect(JSON.parse(response.body)).to be_a_kind_of Array
