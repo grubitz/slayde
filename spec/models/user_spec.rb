@@ -77,6 +77,10 @@ RSpec.describe User, type: :model do
     expect { create(:user) }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 
+  it "doesn't confirmation email on creation if user confirmed" do
+    expect { create(:user_confirmed) }.not_to change { ActionMailer::Base.deliveries.count }
+  end
+
   context '#update_with_password' do
     context 'with valid current password' do
       it 'update password if validation passes' do

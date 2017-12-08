@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   before_validation :normalize_email!
   before_create :generate_token!
-  after_create :send_confirmation_email!
+  after_create :send_confirmation_email!, unless: :confirmed?
 
   def confirmed?
     confirmed_at.present?
