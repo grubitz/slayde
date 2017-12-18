@@ -47,6 +47,22 @@ RSpec.describe User, type: :model do
     expect(user.confirmation_token).to be_nil
   end
 
+  context '#send_reset_password!' do
+    before do
+      user.send_reset_password!
+    end
+    it 'generates token' do
+      expect(user.reset_password_token).not_to be_nil
+    end
+    it 'sets reset_password_send_at to current time' do
+      expect(user.reset_password_sent_at).not_to be_nil
+    end
+    it 'sends reset password email' do
+      expect { user.send_reset_password! }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
+
+
   it '#authenticate! raises error when user not confirmed' do
     expect { user.authenticate!('LetsPlayCatan') }
     .to raise_error(RuntimeError, 'User not confirmed')
@@ -77,7 +93,7 @@ RSpec.describe User, type: :model do
     expect { create(:user) }.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 
-  it "doesn't confirmation email on creation if user confirmed" do
+  it "doesn't send confirmation email on creation if user confirmed" do
     expect { create(:user_confirmed) }.not_to change { ActionMailer::Base.deliveries.count }
   end
 

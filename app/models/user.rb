@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_secure_password
 
   before_validation :normalize_email!
-  before_create :generate_token!
+  before_create -> { generate_token!(:confirmation_token) }
   after_create :send_confirmation_email!, unless: :confirmed?
 
   def confirmed?
@@ -14,6 +14,13 @@ class User < ApplicationRecord
 
   def confirm!
     update!(confirmed_at: Time.now, confirmation_token: nil)
+  end
+
+  def send_reset_password!
+    generate_token!(:reset_password_token)
+    self.reset_password_sent_at = Time.now
+    save!
+    UserMailer.reset_password_instructions(self).deliver_now
   end
 
   def authenticate!(password)
@@ -35,16 +42,16 @@ class User < ApplicationRecord
     email.downcase! if email.present?
   end
 
-  def generate_token!
+  def generate_token!(token_type)
     token = nil
     loop do
       token = SecureRandom.hex
-      break unless User.where(confirmation_token: token).exists?
+      break unless User.where("#{token_type}": token).exists?
     end
-    self.confirmation_token = token
+    self.send("#{token_type}=", token)
   end
 
   def send_confirmation_email!
-    ConfirmationMailer.confirmation_instructions(self).deliver_now
+    UserMailer.confirmation_instructions(self).deliver_now
   end
 end
