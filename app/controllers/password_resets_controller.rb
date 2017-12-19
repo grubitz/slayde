@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-# empty email goes through validation
+  before_action :find_user_by_token, only: [:edit, :update]
 
   def new; end
 
@@ -9,14 +9,9 @@ class PasswordResetsController < ApplicationController
     redirect_to root_url, notice: "An email has been sent to #{params[:email]}"
   end
 
-  def edit
-    @user = User.find_by(reset_password_token: params[:token])
-    raise('Incorrect Token') unless @user.present?
-  end
+  def edit; end
 
   def update
-    @user = User.find_by(reset_password_token: params[:token])
-    raise('Incorrect Token') unless @user.present?
     if @user.update(password: user_params[:password],
                     password_confirmation: user_params[:password_confirmation])
       session[:user_id] = @user.id
@@ -30,6 +25,11 @@ class PasswordResetsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def find_user_by_token
+    @user = User.find_by(reset_password_token: params[:token])
+    raise UserError.new('Incorrect Token') unless @user.present?
   end
 
 end

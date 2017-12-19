@@ -24,8 +24,8 @@ class User < ApplicationRecord
   end
 
   def authenticate!(password)
-    raise 'User not confirmed' unless confirmed?
-    raise 'Invalid password' unless authenticate(password)
+    raise UserError.new('User not confirmed') unless confirmed?
+    raise UserError.new('Invalid password') unless authenticate(password)
   end
 
   def update_with_password(params)

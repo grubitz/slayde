@@ -5,7 +5,7 @@ class EmailConfirmationsController < ApplicationController
       user.confirm!
       redirect_to root_url, notice: "Thank you for confirming, #{user.email}"
     else
-      raise('Incorrect Token')
+      raise UserError.new('Incorrect Token')
     end
 
   end

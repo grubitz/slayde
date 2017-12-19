@@ -25,7 +25,7 @@ RSpec.describe EmailConfirmationsController, type: :controller do
   context 'for incorrect token' do
     it 'raises exception' do
       expect { get :confirm, params: { token: 'mindflyer' } }
-        .to raise_error(RuntimeError, 'Incorrect Token')
+        .to raise_error(UserError, 'Incorrect Token')
     end
   end
 end

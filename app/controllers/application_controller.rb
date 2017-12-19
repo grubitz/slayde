@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    raise 'not authorised' unless current_user.present? && current_user.is_admin?
+    raise UserError.new('not authorised') unless current_user.present? && current_user.is_admin?
   end
 
   def redirect_if_logged_in

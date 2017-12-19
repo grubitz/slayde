@@ -65,13 +65,13 @@ RSpec.describe User, type: :model do
 
   it '#authenticate! raises error when user not confirmed' do
     expect { user.authenticate!('LetsPlayCatan') }
-    .to raise_error(RuntimeError, 'User not confirmed')
+    .to raise_error(UserError, 'User not confirmed')
   end
 
   it '#authenticate! raises error when invalid password' do
     user= create(:user_confirmed, password: 'LetsPlayCivilizationVI')
     expect { user.authenticate!('BetterNot!') }
-    .to raise_error(RuntimeError, 'Invalid password')
+    .to raise_error(UserError, 'Invalid password')
   end
 
   it '#authenticate! does not raise errors for confirmed user and valid password' do
