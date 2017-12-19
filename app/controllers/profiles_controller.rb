@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = current_user
     if @profile.update_with_password(profile_params)
-      redirect_to(edit_profile_url, alert: 'Changes saved')
+      redirect_to(edit_profile_url, notice: 'Changes saved')
     else
       render :edit
     end

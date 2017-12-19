@@ -5,26 +5,38 @@ RSpec.describe ProfilesController, type: :controller do
   let(:user) { create(:user, password: 'milkstout') }
 
   before do
-    sign_in
+    sign_in(user)
   end
-
-  it '#edit render user update template' do
-    get :edit
-    expect(response).to render_template 'edit'
-  end
-
-  context 'for correct password' do
-
-    it 'redirect to edit template' do
-
+  context 'GET #edit' do
+    before do
+      get :edit
+    end
+    it 'assigns @profile' do
+      expect(assigns(:profile)).to eq user
     end
 
-    it 'displays alert' do
-
+    it 'renders edit template' do
+      expect(response).to render_template 'edit'
     end
   end
 
-  it 'for incorrect password render edit template' do
-
+  context 'PATCH #update' do
+    context 'for valid params' do
+      it "redirect to edit template with 'changes saved' notice" do
+        patch :update, params:
+            { user: { email: user.email, current_password: 'milkstout',
+                      password: 'doubleIPA', password_confirmation: 'doubleIPA'} }
+        expect(response).to redirect_to edit_profile_url
+        expect(controller).to set_flash[:notice].to('Changes saved')
+      end
+    end
+    context 'for invalid params' do
+      it 'renders edit template' do
+        patch :update, params:
+            { user: { email: user.email, current_password: 'porter',
+                      password: 'rubyale', password_confirmation: 'lager'} }
+        expect(response).to render_template 'edit'
+      end
+    end
   end
 end

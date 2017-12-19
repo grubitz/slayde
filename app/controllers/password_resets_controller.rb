@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController
+# empty email goes through validation
 
   def new; end
 

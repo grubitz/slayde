@@ -6,7 +6,6 @@ RSpec.describe PasswordResetsController, type: :controller do
     get :new
     expect(response).to render_template 'new'
   end
-
   context 'POST #create' do
     context 'for valid email' do
       let(:user) { create(:user_confirmed) }
