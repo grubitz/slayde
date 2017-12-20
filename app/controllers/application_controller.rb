@@ -2,7 +2,13 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   protect_from_forgery with: :exception
 
+  rescue_from UserError, with: :handle_user_error
+
   protected
+
+  def handle_user_error(error)
+    redirect_to root_url, alert: error.message
+  end
 
   def authenticate_user!
     redirect_to new_session_url unless current_user.present?
