@@ -1,2 +1,2 @@
-<h1>Email confirmed!</h1>
-<p><%= link_to 'Homepage', root_path %></p>
+<h1><%=t('confirmation_confirmation', email: @user.email)%></h1>
+<p><%= link_to t('link.homepage'), root_path %></p>

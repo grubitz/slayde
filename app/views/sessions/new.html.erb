@@ -11,8 +11,8 @@
     </div>
 
     <div class="actions">
-      <%= form.submit value: 'Log in', class: 'btn btn-dark', 'data-disable-with': 'Please wait' %>
-      <%= link_to 'Forgotten password?', new_password_reset_path, class: 'btn btn-dark' %>
+      <%= form.submit value: t('link.log_in'), class: 'btn btn-dark', 'data-disable-with': t('link.disable_with') %>
+      <%= link_to t('link.forgoten_password'), new_password_reset_path, class: 'btn btn-dark' %>
     </div>
   </div>
 <% end %>

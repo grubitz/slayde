@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-<h1>Users</h1>
+<h1><%= t('user.users') %></h1>
 
 <table class="table table-hover">
   <thead>
     <tr>
       <th>#</th>
-      <th>Email</th>
-      <th>Confirmed at</th>
-      <th>Admin</th>
+      <th><%= t('link.email') %></th>
+      <th><%= t('link.confirm_at') %></th>
+      <th><%= t('link.admin') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,10 +21,10 @@
         <td><%= user.confirmed_at %></td>
         <td><%= yes_no(user.is_admin) %></td>
         <td>
-          <%= link_to 'Show', user, class: 'btn btn-link' %>
-          <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-link' %>
-          <%= link_to 'Destroy', user, method: :delete,
-                      data: { confirm: 'Are you sure?' }, class: 'btn btn-link' %>
+          <%= link_to t('link.show'), user, class: 'btn btn-link' %>
+          <%= link_to t('link.edit'), edit_user_path(user), class: 'btn btn-link' %>
+          <%= link_to t('link.destroy'), user, method: :delete,
+                      data: { confirm: t('confirm_question') }, class: 'btn btn-link' %>
         </td>
       </tr>
     <% end %>
@@ -33,5 +33,5 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path, class: 'btn btn-dark' %>
+<%= link_to t('user.new'), new_user_path, class: 'btn btn-dark' %>
 </div>

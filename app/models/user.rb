@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_secure_password
 
   before_validation :normalize_email!
-  before_create -> { generate_token!(:confirmation_token) }
+  before_create -> { generate_token!(:confirmation) }
   after_create :send_confirmation_email!, unless: :confirmed?
 
   def confirmed?
@@ -17,20 +17,20 @@ class User < ApplicationRecord
   end
 
   def send_reset_password!
-    generate_token!(:reset_password_token)
+    generate_token!(:reset_password)
     self.reset_password_sent_at = Time.now
     save!
     UserMailer.reset_password_instructions(self).deliver_now
   end
 
   def authenticate!(password)
-    raise UserError.new('User not confirmed') unless confirmed?
-    raise UserError.new('Invalid password') unless authenticate(password)
+    raise UserError.new(I18n.t('user.not_confirmed')) unless confirmed?
+    raise UserError.new(I18n.t('invalid_password')) unless authenticate(password)
   end
 
   def update_with_password(params)
     unless authenticate(params.delete(:current_password))
-      errors[:base] << 'Incorrect password'
+      errors[:base] << I18n.t('invalid_password')
       return false
     end
     update(params)
@@ -46,9 +46,9 @@ class User < ApplicationRecord
     token = nil
     loop do
       token = SecureRandom.hex
-      break unless User.where("#{token_type}": token).exists?
+      break unless User.where("#{token_type}_token": token).exists?
     end
-    self.send("#{token_type}=", token)
+    self.send("#{token_type}_token=", token)
   end
 
   def send_confirmation_email!

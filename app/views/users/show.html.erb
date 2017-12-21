@@ -1,20 +1,20 @@
 <div class="container">
 
   <p>
-    <strong>Email:</strong>
+    <strong><%= t('link.email') %>:</strong>
     <%= @user.email %>
   </p>
 
   <p>
-    <strong>Confirmed:</strong>
+    <strong><%= t('link.confirm') %>:</strong>
     <%= yes_no(@user.confirmed?) %>
   </p>
 
   <p>
-    <strong>Admin:</strong>
+    <strong><%= t('link.admin') %>:</strong>
     <%= yes_no(@user.is_admin?) %>
 
   </p>
-  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-dark' %>
-  <%= link_to 'Back', users_path, class: 'btn btn-dark' %>
+  <%= link_to t('link.edit'), edit_user_path(@user), class: 'btn btn-dark' %>
+  <%= link_to t('link.back'), users_path, class: 'btn btn-dark' %>
 </div>

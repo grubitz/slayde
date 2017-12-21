@@ -27,7 +27,7 @@ RSpec.describe ProfilesController, type: :controller do
             { user: { email: user.email, current_password: 'milkstout',
                       password: 'doubleIPA', password_confirmation: 'doubleIPA'} }
         expect(response).to redirect_to edit_profile_url
-        expect(controller).to set_flash[:notice].to('Changes saved')
+        expect(controller).to set_flash[:notice]
       end
     end
     context 'for invalid params' do

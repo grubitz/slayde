@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-    raise UserError.new('Email not recognised') if user.nil?
+    raise UserError.new(t('bad_email')) if user.nil?
     user.authenticate!(session_params[:password])
     session[:user_id] = user.id
-    redirect_to root_url, notice: 'Logged in'
+    redirect_to root_url, notice: t('session.open')
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: 'Logged out'
+    redirect_to root_url, notice: t('session.destroy')
   end
 
   private

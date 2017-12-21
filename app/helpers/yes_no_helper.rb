@@ -1,5 +1,5 @@
 module YesNoHelper
   def yes_no(value)
-    value ? 'yes' : 'no'
+    value ? t('yes') : t('no')
   end
 end

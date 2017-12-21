@@ -72,7 +72,7 @@ var Slayde = {
       order.push(tile.innerText);
     });
     $.post('/games/check', { solution: order }, function() {
-      alert('Congrats');
+      alert('You won!'); //todo
     });
   },
 

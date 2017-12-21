@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     user.send_reset_password! if user.present?
-    redirect_to root_url, notice: "An email has been sent to #{params[:email]}"
+    redirect_to root_url, notice: t('sent_email', email: params[:email])
   end
 
   def edit; end
@@ -15,7 +15,7 @@ class PasswordResetsController < ApplicationController
     if @user.update(password: user_params[:password],
                     password_confirmation: user_params[:password_confirmation])
       session[:user_id] = @user.id
-      redirect_to root_url, notice: 'Your password has been changed.'
+      redirect_to root_url, notice: t('password_change_confirm')
     else
       render :edit
     end
@@ -29,7 +29,7 @@ class PasswordResetsController < ApplicationController
 
   def find_user_by_token
     @user = User.find_by(reset_password_token: params[:token])
-    raise UserError.new('Incorrect Token') unless @user.present?
+    raise UserError.new(t('incorrect_token')) unless @user.present?
   end
 
 end

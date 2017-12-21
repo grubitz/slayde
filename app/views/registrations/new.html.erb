@@ -1,8 +1,7 @@
 <%= form_with(model: @user, local: true, url: registrations_path) do |form| %>
     <% if @user.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+<!--todo-->
           <ul>
             <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -27,8 +26,8 @@
     </div>
 
     <div class="actions">
-      <%= form.submit value: 'Register', class: 'btn btn-dark' %>
-      <%= link_to 'Or log in', new_session_path, class: 'btn btn-outline-dark' %>
+      <%= form.submit value: t('link.register'), class: 'btn btn-dark' %>
+      <%= link_to t('link.log_in'), new_session_path, class: 'btn btn-outline-dark' %>
     </div>
   </div>
 <% end %>

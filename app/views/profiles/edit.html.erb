@@ -1,8 +1,7 @@
 <%= form_with(model: @profile, local: true, method: :patch, url: profile_path) do |form| %>
     <% if @profile.errors.any? %>
+        <!-- todo bootstrap it -->
         <div id="error_explanation">
-          <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this user from being saved:</h2>
-
           <ul>
             <% @profile.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -32,7 +31,7 @@
       </div>
 
       <div class="actions">
-        <%= form.submit value: 'Save', class: 'btn btn-dark' %>
+        <%= form.submit value: t('link.save'), class: 'btn btn-dark' %>
       </div>
     </div>
 <% end %>

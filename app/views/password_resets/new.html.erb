@@ -5,7 +5,9 @@
       <%= form.text_field :email, class: 'form-control' %>
     </div>
     <div class="actions">
-      <%= form.submit value: 'Send password reset token', class: 'btn btn-dark', 'data-disable-with': 'Please wait' %>
+      <%= form.submit value: t('link.password_reset'),
+                      class: 'btn btn-dark',
+                      'data-disable-with': t('link.disable_with') %>
     </div>
   </div>
 <% end %>

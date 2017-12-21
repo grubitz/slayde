@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to new_session_url, notice: "A confirmation email has been sent to #{@user.email}."
+      redirect_to new_session_url, notice: t('sent_email', email: @user.email)
     else
       render :new
     end

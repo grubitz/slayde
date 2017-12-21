@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    raise UserError.new('not authorised') unless current_user.present? && current_user.is_admin?
+    raise UserError.new(t('not_authorised')) unless current_user.present? && current_user.is_admin?
   end
 
   def redirect_if_logged_in
-    redirect_to root_url, notice: "You're already logged in!" if current_user.present?
+    redirect_to root_url, notice: t('already_logged_in') if current_user.present?
   end
 
 end

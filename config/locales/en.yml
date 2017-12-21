@@ -30,4 +30,57 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  confirm_question: 'Are you sure?'
+  invalid_password: "Password invalid"
+  you_won: "You won!"
+  not_authorised: 'Not authorised'
+  already_logged_in: "You're already logged in!"
+  incorrect_token: 'This link has already been used'
+  confirmation_confirmation: "Thank you for confirming, %{email}"
+  password_change_confirm: 'Your password has been changed'
+  bad_email: 'Email not recognised'
+  session:
+    open: 'Logged in'
+    destroy: 'Logged out'
+  sent_email: "An email has been sent to %{email}"
+  changes_saved: 'Changes saved'
+  yes: 'yes'
+  no: 'no'
+  user_mailer:
+    hello: 'hello'
+    not_requested: 'If you have not requested this email, please ignore it!'
+    confirmation_instructions:
+      subject: 'Confirmation instructions'
+      confirm_link: 'Click here to confirm your account!'
+    reset_password_instructions:
+      subject: 'Resetting your password'
+      reset_link: 'Click here to reset your password!'
+  link:
+    homepage: 'Homepage'
+    profile: 'Profile'
+    log_in: 'Log in'
+    log_out: 'Log out'
+    control_panel: 'Control panel'
+    register: 'Register'
+    save: 'Save'
+    password_reset: 'Send password reset token'
+    disable_with: 'Please wait'
+    forgoten_password: 'Forgotten password?'
+    back: 'Back'
+    email: 'Email'
+    confirm_at: 'Confirmed at'
+    admin: 'Admin'
+    show: 'Show'
+    edit: 'Edit'
+    destroy: 'Destroy'
+    confirm: 'Confirmed'
+  user:
+    users: 'Users'
+    new: 'New user'
+    editing: 'Editing user'
+    not_confirmed: 'User not confirmed'
+    created: 'User was successfully created.'
+    updated: 'User was successfully updated.'
+    destroyed: 'User was successfully destroyed.'
+
+

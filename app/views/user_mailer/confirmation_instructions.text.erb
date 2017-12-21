@@ -1,7 +1,6 @@
-Hello <%= @user.email %>!
+<%= t('user_mailer.hello') %> <%= @user.email %>!
 
-Click here
-<%= confirmation_url(@user.confirmation_token) %>
-to confirm your account!
+<%= t('user_mailer.confirmation_instructions.confirm_link') %>
+<%=confirmation_url(@user.confirmation_token) %>
 
-If you have not requested confirmation, please ignore this email!
+<%=t('user_mailer.not_requested')%>

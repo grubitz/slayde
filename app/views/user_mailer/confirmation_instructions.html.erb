@@ -1,3 +1,4 @@
-<h3> Hello <%= @user.email %>!</h3><br>
-<a href="<%= confirmation_url(@user.confirmation_token) %>">Click here to confirm your account!</a><br>
-<p>If you have not requested confirmation, please ignore this email!</p>
+<h3><%= t('user_mailer.hello') %> <%= @user.email %>!</h3><br>
+<%= link_to t('user_mailer.confirmation_instructions.confirm_link'),
+            confirmation_url(@user.confirmation_token) %><br>
+<p><%=t('user_mailer.not_requested')%></p>
