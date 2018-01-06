@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'homepage#show'
 
   get 'email_confirmation/:token', to: 'email_confirmations#confirm', as: 'confirmation'
@@ -16,5 +17,7 @@ Rails.application.routes.draw do
   resource :profile, only: [:edit, :update]
 
   resources :password_resets, only: [:new, :create, :edit, :update], param: :token
+
+  resources :pictures, only: [:new, :create]
 
 end

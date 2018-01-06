@@ -44,8 +44,8 @@ en:
     destroy: 'Logged out'
   sent_email: "An email has been sent to %{email}"
   changes_saved: 'Changes saved'
-  yes: 'yes'
-  no: 'no'
+  'yes': 'yes'
+  'no': 'no'
   user_mailer:
     hello: 'hello'
     not_requested: 'If you have not requested this email, please ignore it!'
@@ -82,5 +82,8 @@ en:
     created: 'User was successfully created.'
     updated: 'User was successfully updated.'
     destroyed: 'User was successfully destroyed.'
-
+  picture:
+    uploaded: 'Picture uploaded'
+    too_narrow: "Width must be at least %{width}px"
+    too_short: "Height must be at least %{height}px"
 
