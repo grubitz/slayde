@@ -83,6 +83,7 @@ en:
     updated: 'User was successfully updated.'
     destroyed: 'User was successfully destroyed.'
   picture:
+    upload: 'Upload picture'
     uploaded: 'Picture uploaded'
     too_narrow: "Width must be at least %{width}px"
     too_short: "Height must be at least %{height}px"
