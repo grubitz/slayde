@@ -23,7 +23,10 @@ var Slayde = {
   },
   
   _buildTile: function(key, item) {
-    var tile = $('<div class="tile" id="tile' + item + '" draggable="true"><div class="content"><div class="game-grid"><div class="table-cell">' + item + '</div></div></div></div>');
+    var difficulty = 'easy';
+    var tile = $('<div class="tile ' + difficulty + '" id="tile' + item + '" draggable="true">' +
+      '<div class="content"><div class="game-grid">' +
+      '<div class="table-cell">' + item + '</div></div></div></div>');
     var dropzone = $('<div class="dropzone"></div>');
 
     tile.on('dragstart', this._dragStartHandler.bind(this));

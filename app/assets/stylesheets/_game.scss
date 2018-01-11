@@ -1,14 +1,30 @@
+$margin-width: 10%;
+$board-width: 100%;
+
+@mixin difficulty-level($rows-count) {
+  $tile-width: (($board-width - $margin-width) / $rows-count);
+  width: $tile-width;
+  padding-bottom: $tile-width;
+  margin: ($margin-width / ($rows-count * 2));
+}
+
 .tile {
-  width: 30%;
   background: #F7F7F7;
   color: $dark;
   border: solid;
-  margin: 1.66%;
   font-size: 4rem;
   float: left;
   position: relative;
-  padding-bottom : 30%;
   overflow: hidden;
+  &.easy {
+    @include difficulty-level(3)
+  }
+  &.medium {
+    @include difficulty-level(6)
+  }
+  &.hard {
+    @include difficulty-level(9)
+  }
 }
 
 #board {
@@ -38,8 +54,3 @@
 body {
   padding-top: 60px;
 }
-form {
-
-
-}
-
